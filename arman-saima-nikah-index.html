@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#fde3d0">
+<title>Arman ❤️ Saima — Nikah Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --peach:#F0956A;--blush:#F2AABB;--ivory:#FDF8F2;
+  --lavender:#C9B8E8;--gold:#C8943A;--gold-lt:#E5C06A;
+  --rose:#C9647A;--deep:#5C2D3E;--muted:#8A6272;
+  --teal:#3A7A7C;--teal-lt:#6ABCBE;
+  --emerald:#2D6B4F;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--ivory);color:var(--deep);overflow-x:hidden;width:100%}
+img,svg{display:block;max-width:100%}
+
+/* ══════════════════════════════
+   BISMILLAH OPENER
+══════════════════════════════ */
+#bismillah-screen{
+  position:fixed;inset:0;z-index:9999;
+  background:linear-gradient(160deg,#2a1a2e 0%,#3d1f35 50%,#1a2a2a 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1.5rem;padding:2rem;
+  animation:splashOut 0.6s ease 2.8s both;
+}
+@keyframes splashOut{to{opacity:0;pointer-events:none;visibility:hidden}}
+
+.bismillah-arabic{
+  font-family:'Amiri',serif;
+  font-size:clamp(2rem,8vw,4rem);
+  color:var(--gold-lt);
+  text-align:center;
+  line-height:1.4;
+  animation:fadeSlide .9s ease .3s both;
+  letter-spacing:.03em;
+}
+.bismillah-trans{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-weight:300;
+  font-size:clamp(.85rem,2.5vw,1.1rem);
+  color:rgba(255,255,255,.65);
+  text-align:center;letter-spacing:.06em;
+  animation:fadeSlide .9s ease .6s both;
+}
+.splash-crescent{
+  animation:fadeSlide .9s ease 0s both;
+}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+#hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  overflow:hidden;
+  background:linear-gradient(150deg,#fde3d0 0%,#f8d0dc 30%,#ecdaf5 65%,#fef0e0 100%);
+  padding:2rem 1.5rem 5rem;
+}
+
+/* Islamic geometric pattern overlay */
+.geo-pattern{
+  position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23C8943A'%3E%3Cpolygon points='40,4 52,28 78,28 58,46 66,72 40,56 14,72 22,46 2,28 28,28'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:80px 80px;
+}
+
+/* Soft blobs */
+.blob{position:absolute;border-radius:50%;pointer-events:none;z-index:0;filter:blur(60px);animation:drift var(--dur,20s) ease-in-out infinite alternate}
+.b1{width:min(420px,90vw);height:min(420px,90vw);background:rgba(242,170,187,.38);top:-15%;left:-15%}
+.b2{width:min(300px,70vw);height:min(300px,70vw);background:rgba(201,180,232,.35);top:20%;right:-12%;--dur:16s}
+.b3{width:min(250px,60vw);height:min(250px,60vw);background:rgba(240,149,106,.28);bottom:0;left:5%;--dur:18s}
+.b4{width:min(180px,50vw);height:min(180px,50vw);background:rgba(229,192,106,.24);bottom:15%;right:8%;--dur:13s}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(22px,28px)}}
+
+/* Floating petals */
+.petal{position:absolute;pointer-events:none;z-index:1;animation:rise var(--d,14s) ease-in-out var(--dl,0s) infinite}
+@keyframes rise{0%{opacity:0;transform:translateY(10px)rotate(0deg)scale(.8)}15%{opacity:.65}80%{opacity:.45}100%{opacity:0;transform:translateY(-90px)rotate(28deg)scale(1.1)}}
+
+/* Crescent corner deco */
+.crescent-deco{position:absolute;pointer-events:none;z-index:1;opacity:.18;animation:gentleSpin 40s linear infinite}
+@keyframes gentleSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* Hero content */
+.hero-inner{position:relative;z-index:2;text-align:center;width:100%;animation:up 1.4s cubic-bezier(.2,.8,.3,1) both}
+@keyframes up{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+
+/* Mini Bismillah at top of hero */
+.hero-bismillah{
+  font-family:'Amiri',serif;
+  font-size:clamp(1.3rem,4vw,2rem);
+  color:var(--gold);
+  margin-bottom:.4rem;
+  animation:up 1.4s .05s both;
+  letter-spacing:.04em;
+}
+.hero-bismillah-sub{
+  font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1.6rem;
+  animation:up 1.4s .12s both;
+}
+
+.date-pill{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--gold);background:rgba(255,255,255,.65);
+  border:1px solid rgba(200,148,58,.28);
+  padding:.4rem 1.3rem;border-radius:50px;
+  margin-bottom:1.8rem;animation:up 1.4s .2s both;
+}
+.dot{width:4px;height:4px;border-radius:50%;background:var(--gold-lt)}
+
+.names{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(3.4rem,12vw,7.5rem);
+  line-height:1;color:var(--deep);animation:up 1.4s .32s both;
+}
+.heart{
+  display:block;font-size:clamp(1.4rem,4.5vw,2.2rem);
+  margin:.18em 0;color:var(--rose);
+  animation:beat 2.6s ease-in-out infinite;
+}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+
+.tagline{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(.95rem,3vw,1.35rem);
+  color:var(--rose);line-height:1.65;
+  margin-top:1.2rem;animation:up 1.4s .45s both;
+}
+
+.btn{
+  display:inline-block;margin-top:2rem;
+  padding:.85rem 2.6rem;
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:#fff;text-decoration:none;
+  background:linear-gradient(135deg,var(--rose),var(--peach));
+  border-radius:50px;
+  box-shadow:0 8px 28px rgba(201,100,122,.28);
+  transition:transform .3s,box-shadow .3s;
+  animation:up 1.4s .58s both;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:active{transform:scale(.97)}
+
+.scroll-arrow{
+  position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);
+  z-index:2;display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  animation:up 1.4s 1s both;
+}
+.scroll-arrow span{font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);opacity:.7}
+.arrow-line{width:1px;height:36px;background:linear-gradient(var(--gold),transparent);animation:grow 2s ease-in-out infinite}
+@keyframes grow{0%{transform:scaleY(0);transform-origin:top;opacity:1}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom;opacity:0}}
+
+/* ══════════════════════════════
+   SHARED
+══════════════════════════════ */
+.sec{padding:5rem 1.4rem}
+.sec-inner{max-width:860px;margin:0 auto}
+
+.eyebrow{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:.6rem}
+.sec-h{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2rem,5.5vw,3.2rem);color:var(--deep);text-align:center;line-height:1.12;margin-bottom:.5rem}
+.arabic-sub{font-family:'Amiri',serif;font-size:clamp(1.1rem,3.5vw,1.6rem);color:var(--gold);text-align:center;margin-bottom:2rem;letter-spacing:.04em}
+
+.rule{display:flex;align-items:center;gap:.8rem;justify-content:center;margin-bottom:2.6rem}
+.rule::before,.rule::after{content:'';flex:1;max-width:80px;height:1px;background:linear-gradient(to right,transparent,var(--gold-lt))}
+.rule::after{background:linear-gradient(to left,transparent,var(--gold-lt))}
+.rule-ic{color:var(--gold);font-size:.9rem}
+
+/* Islamic ornament divider */
+.islamic-divider{
+  display:flex;align-items:center;justify-content:center;gap:1rem;
+  margin:2rem 0;
+}
+.islamic-divider::before,.islamic-divider::after{
+  content:'';flex:1;max-width:120px;height:1px;
+  background:linear-gradient(to right,transparent,var(--gold));
+}
+.islamic-divider::after{background:linear-gradient(to left,transparent,var(--gold))}
+
+/* ══════════════════════════════
+   STORY / INVITE
+══════════════════════════════ */
+#story{background:linear-gradient(180deg,#fdf8f2,#fce8ef);position:relative;overflow:hidden}
+#story::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:min(350px,80vw);height:min(350px,80vw);
+  background:radial-gradient(circle,rgba(201,180,232,.15),transparent 65%);
+  border-radius:50%;pointer-events:none;
+}
+
+/* Islamic arch frame for invite card */
+.invite-arch{
+  position:relative;
+  max-width:680px;margin:0 auto;
+}
+.arch-top{
+  width:100%;display:block;
+}
+
+.invite-card{
+  background:rgba(255,255,255,.82);
+  border:1px solid rgba(255,255,255,.92);
+  border-radius:0 0 24px 24px;
+  padding:2.4rem clamp(1.5rem,6vw,4rem) 3rem;
+  box-shadow:0 16px 50px rgba(180,100,120,.08);
+  position:relative;
+  text-align:center;
+  margin-top:-2px;
+}
+
+/* Gold geometric corner ornaments */
+.invite-card::before,.invite-card::after{
+  content:'❖';position:absolute;
+  font-size:1.2rem;color:var(--gold-lt);opacity:.5;
+}
+.invite-card::before{bottom:1.2rem;left:1.2rem}
+.invite-card::after{bottom:1.2rem;right:1.2rem}
+
+.quran-verse{
+  font-family:'Amiri',serif;
+  font-size:clamp(1.3rem,4vw,1.9rem);
+  color:var(--deep);
+  line-height:1.7;margin-bottom:.5rem;
+  letter-spacing:.03em;
+}
+.quran-ref{
+  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:2rem;display:block;
+}
+
+.invite-text{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(1rem,2.8vw,1.35rem);line-height:1.95;color:var(--deep);
+}
+.invite-text strong{font-style:normal;font-weight:500;color:var(--rose)}
+.invite-sig{
+  margin-top:2rem;
+  font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--rose);
+}
+
+/* ══════════════════════════════
+   EVENTS
+══════════════════════════════ */
+#events{background:var(--ivory);position:relative;overflow:hidden}
+
+/* subtle Islamic star pattern in background */
+#events::before{
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpolygon points='30,3 36,21 54,21 40,33 45,51 30,40 15,51 20,33 6,21 24,21' fill='%23C8943A'/%3E%3C/svg%3E");
+  background-size:60px 60px;
+}
+
+.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;position:relative;z-index:1}
+@media(max-width:480px){.grid4{grid-template-columns:1fr;gap:1rem}}
+
+.ec{
+  position:relative;overflow:hidden;
+  background:rgba(255,255,255,.85);
+  border:1px solid rgba(255,255,255,.95);
+  border-radius:20px;
+  padding:2rem 1.4rem;
+  box-shadow:0 4px 20px rgba(180,100,120,.07);
+  text-align:center;
+  transition:transform .35s cubic-bezier(.2,.8,.3,1),box-shadow .35s;
+  -webkit-tap-highlight-color:transparent;
+}
+.ec::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:20px 20px 0 0}
+.ec.mehndi::before{background:linear-gradient(90deg,#6dbf7e,#b4df8e)}
+.ec.haldi::before {background:linear-gradient(90deg,#F2B830,#F2A07B)}
+.ec.wed::before   {background:linear-gradient(90deg,#C9647A,#C9B8E8)}
+.ec.walima::before{background:linear-gradient(90deg,#3A7A7C,#C9B8E8)}
+.ec:active{transform:scale(.98)}
+
+.ec-icon{font-size:2.2rem;margin-bottom:.7rem;display:block;animation:bob 3s ease-in-out infinite}
+.ec:nth-child(2) .ec-icon{animation-delay:.5s}
+.ec:nth-child(3) .ec-icon{animation-delay:1s}
+.ec:nth-child(4) .ec-icon{animation-delay:1.5s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+.ec-name{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:500;color:var(--deep);margin-bottom:.2rem}
+.ec-arabic{font-family:'Amiri',serif;font-size:1rem;color:var(--gold);margin-bottom:.4rem;letter-spacing:.02em}
+.ec-date{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:.5rem}
+.ec-venue{font-size:.8rem;color:var(--muted);line-height:1.6;font-weight:300}
+
+/* ══════════════════════════════
+   VENUE
+══════════════════════════════ */
+#venue{
+  background:linear-gradient(130deg,#ecdaf5 0%,#fde5d0 50%,#f8d0dc 100%);
+  padding:6rem 1.4rem;position:relative;overflow:hidden;
+}
+/* Islamic geometric border pattern */
+#venue::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 2 L22 10 L30 10 L24 16 L26 24 L20 20 L14 24 L16 16 L10 10 L18 10 Z' fill='none' stroke='%23C8943A' stroke-width='.5'/%3E%3C/svg%3E");
+  background-size:40px 40px;opacity:.06;pointer-events:none;
+}
+
+.venue-in{max-width:680px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.venue-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,255,255,.65);border:1px solid rgba(200,148,58,.28);
+  padding:.45rem 1.4rem;border-radius:50px;
+  font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem;
+}
+.venue-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2.2rem,9vw,4.5rem);color:var(--deep);line-height:1.05;margin-bottom:.5rem}
+.venue-loc{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);margin-bottom:1.4rem}
+.venue-desc{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(.95rem,2.5vw,1.2rem);color:#7a5060;line-height:1.8;margin-bottom:2.2rem}
+.venue-details{
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+  background:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.88);
+  border-radius:20px;padding:1.8rem;
+  box-shadow:0 10px 36px rgba(180,100,120,.09);text-align:left;
+}
+@media(max-width:420px){.venue-details{grid-template-columns:1fr;text-align:center}}
+.vd-label{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem;display:block}
+.vd-val{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--deep)}
+
+/* ══════════════════════════════
+   DUA SECTION
+══════════════════════════════ */
+#dua{
+  background:linear-gradient(135deg,#1e2d2d 0%,#2d1a2a 50%,#1a2020 100%);
+  padding:5.5rem 1.4rem;text-align:center;position:relative;overflow:hidden;
+}
+#dua::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='18' fill='none' stroke='%23E5C06A' stroke-width='.4'/%3E%3Cpolygon points='40,22 44,33 56,33 47,40 50,52 40,45 30,52 33,40 24,33 36,33' fill='none' stroke='%23E5C06A' stroke-width='.4'/%3E%3C/svg%3E");
+  background-size:80px 80px;opacity:.07;pointer-events:none;
+}
+
+.dua-inner{max-width:640px;margin:0 auto;position:relative;z-index:1}
+.dua-label{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-lt);opacity:.8;margin-bottom:1.2rem}
+.dua-arabic{
+  font-family:'Amiri',serif;
+  font-size:clamp(1.8rem,6vw,3rem);
+  color:var(--gold-lt);line-height:1.6;margin-bottom:.8rem;letter-spacing:.03em;
+}
+.dua-trans{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(.9rem,2.5vw,1.15rem);
+  color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:.5rem;
+}
+.dua-ref{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-lt);opacity:.6}
+
+/* ══════════════════════════════
+   COUNTDOWN
+══════════════════════════════ */
+#countdown{
+  background:var(--deep);padding:5rem 1.4rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+#countdown::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 20% 50%,rgba(242,170,187,.1),transparent),
+    radial-gradient(ellipse 50% 80% at 80% 50%,rgba(201,180,232,.09),transparent);
+  pointer-events:none;
+}
+.cd-eye{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:.8rem}
+.cd-arabic{font-family:'Amiri',serif;font-size:clamp(1.2rem,4vw,1.8rem);color:var(--gold-lt);margin-bottom:.4rem;letter-spacing:.03em}
+.cd-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(1rem,3vw,1.5rem);color:rgba(255,255,255,.75);margin-bottom:2.4rem}
+.cd-row{display:flex;justify-content:center;gap:clamp(.8rem,4vw,2.2rem);flex-wrap:wrap;position:relative;z-index:1}
+.cd-item{text-align:center}
+.cd-n{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2.6rem,9vw,4.5rem);color:#fff;line-height:1;display:block}
+.cd-u{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);opacity:.7;margin-top:.25rem;display:block}
+
+/* ══════════════════════════════
+   CLOSING
+══════════════════════════════ */
+#closing{
+  position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#fce8ef 0%,#ecdaf5 40%,#fdf8f2 100%);
+  padding:7rem 1.4rem 6rem;text-align:center;
+}
+.close-wave{position:absolute;left:0;right:0;pointer-events:none}
+.close-wave.top{top:0}.close-wave.bot{bottom:0}
+.close-in{max-width:620px;margin:0 auto;position:relative;z-index:1}
+.close-arabic{
+  font-family:'Amiri',serif;
+  font-size:clamp(1.6rem,5vw,2.4rem);
+  color:var(--gold);margin-bottom:.5rem;letter-spacing:.03em;
+}
+.close-arabic-sub{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;display:block}
+.close-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(1.2rem,3.5vw,1.9rem);color:var(--deep);line-height:1.75;margin-bottom:1.6rem}
+.close-sub{font-size:.86rem;color:var(--muted);line-height:1.8;margin-bottom:2.4rem;font-weight:300}
+.close-names{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(2rem,7vw,3rem);color:var(--rose);margin-bottom:.4rem}
+.close-date{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:2.4rem}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer{
+  background:#140e18;padding:2rem 1.4rem;text-align:center;
+  font-size:.7rem;letter-spacing:.1em;color:rgba(255,255,255,.35);
+}
+footer strong{color:rgba(255,255,255,.7)}
+.footer-arabic{font-family:'Amiri',serif;font-size:1.1rem;color:var(--gold-lt);opacity:.6;display:block;margin-bottom:.5rem}
+
+/* ══════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════ */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.8,.3,1);will-change:opacity,transform}
+.rv.show{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.38s}
+
+/* ══════════════════════════════
+   MOBILE
+══════════════════════════════ */
+@media(max-width:600px){
+  .sec{padding:4rem 1.2rem}
+  #venue{padding:5rem 1.2rem}
+  #countdown{padding:4rem 1.2rem}
+  #closing{padding:5rem 1.2rem 4.5rem}
+  #dua{padding:4rem 1.2rem}
+  .invite-card{padding:2rem 1.3rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════ BISMILLAH SPLASH ══════ -->
+<div id="bismillah-screen" aria-hidden="true">
+  <!-- Crescent & Star SVG -->
+  <div class="splash-crescent">
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40 8 C22 8 8 22 8 40 C8 58 22 72 40 72 C30 72 18 62 18 40 C18 18 30 8 40 8Z" fill="#E5C06A" opacity=".9"/>
+      <polygon points="55,14 57,20 63,20 58,24 60,30 55,26 50,30 52,24 47,20 53,20" fill="#E5C06A" opacity=".9"/>
+    </svg>
+  </div>
+  <div class="bismillah-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+  <div class="bismillah-trans">In the name of Allah, the Most Gracious, the Most Merciful</div>
+</div>
+
+
+<!-- ══════ HERO ══════ -->
+<section id="hero">
+  <div class="geo-pattern"></div>
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="blob b3"></div><div class="blob b4"></div>
+
+  <!-- Rotating geometric SVG corners -->
+  <svg class="crescent-deco" style="position:absolute;top:-40px;right:-40px;width:min(220px,55vw)" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#C8943A" stroke-width="1">
+      <polygon points="100,10 115,45 155,45 125,68 136,103 100,82 64,103 75,68 45,45 85,45"/>
+      <circle cx="100" cy="100" r="55"/>
+      <circle cx="100" cy="100" r="40"/>
+    </g>
+  </svg>
+  <svg class="crescent-deco" style="position:absolute;bottom:-40px;left:-40px;width:min(180px,45vw);animation-direction:reverse" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#C9647A" stroke-width="1">
+      <polygon points="100,10 115,45 155,45 125,68 136,103 100,82 64,103 75,68 45,45 85,45"/>
+      <circle cx="100" cy="100" r="55"/>
+    </g>
+  </svg>
+
+  <!-- Floating petals -->
+  <div class="petal" style="left:6%;top:20%;--d:15s;--dl:0s">
+    <svg width="32" height="32" viewBox="0 0 40 40"><g transform="translate(20,20)">
+      <ellipse rx="5" ry="11" fill="#F2AABB" opacity=".65"/><ellipse rx="5" ry="11" fill="#F2AABB" opacity=".6" transform="rotate(72)"/>
+      <ellipse rx="5" ry="11" fill="#f5c0cc" opacity=".65" transform="rotate(144)"/><ellipse rx="5" ry="11" fill="#F2AABB" opacity=".6" transform="rotate(216)"/>
+      <ellipse rx="5" ry="11" fill="#f5c0cc" opacity=".65" transform="rotate(288)"/><circle r="4" fill="#fff" opacity=".8"/>
+    </g></svg>
+  </div>
+  <div class="petal" style="right:7%;top:28%;--d:12s;--dl:2s">
+    <svg width="26" height="26" viewBox="0 0 40 40"><g transform="translate(20,20)">
+      <ellipse rx="4" ry="10" fill="#C9B8E8" opacity=".65" transform="rotate(0)"/><ellipse rx="4" ry="10" fill="#d4c5ee" opacity=".55" transform="rotate(60)"/>
+      <ellipse rx="4" ry="10" fill="#C9B8E8" opacity=".65" transform="rotate(120)"/><ellipse rx="4" ry="10" fill="#d4c5ee" opacity=".55" transform="rotate(180)"/>
+      <ellipse rx="4" ry="10" fill="#C9B8E8" opacity=".65" transform="rotate(240)"/><ellipse rx="4" ry="10" fill="#d4c5ee" opacity=".55" transform="rotate(300)"/>
+    </g></svg>
+  </div>
+  <div class="petal" style="left:18%;bottom:28%;--d:17s;--dl:4s">
+    <svg width="22" height="22" viewBox="0 0 40 40"><g transform="translate(20,20)">
+      <ellipse rx="4" ry="9" fill="#F0956A" opacity=".6" transform="rotate(0)"/><ellipse rx="4" ry="9" fill="#f5aa85" opacity=".5" transform="rotate(72)"/>
+      <ellipse rx="4" ry="9" fill="#F0956A" opacity=".6" transform="rotate(144)"/><ellipse rx="4" ry="9" fill="#f5aa85" opacity=".5" transform="rotate(216)"/>
+      <ellipse rx="4" ry="9" fill="#F0956A" opacity=".6" transform="rotate(288)"/>
+    </g></svg>
+  </div>
+  <!-- Islamic 8-pointed star petal -->
+  <div class="petal" style="right:15%;bottom:35%;--d:11s;--dl:3s">
+    <svg width="22" height="22" viewBox="0 0 40 40"><g transform="translate(20,20)">
+      <polygon points="0,-10 2.9,-2.9 10,0 2.9,2.9 0,10 -2.9,2.9 -10,0 -2.9,-2.9" fill="#E5C06A" opacity=".5"/>
+      <polygon points="0,-10 2.9,-2.9 10,0 2.9,2.9 0,10 -2.9,2.9 -10,0 -2.9,-2.9" fill="#E5C06A" opacity=".4" transform="rotate(45)"/>
+    </g></svg>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-bismillah">بِسْمِ اللَّهِ</div>
+    <div class="hero-bismillah-sub">In the name of Allah</div>
+
+    <div class="date-pill">
+      <span class="dot"></span>
+      28 May – 1 June 2025 &nbsp;·&nbsp; Darbhanga
+      <span class="dot"></span>
+    </div>
+
+    <div class="names">
+      Arman
+      <span class="heart">❤️</span>
+      Saima
+    </div>
+
+    <p class="tagline">
+      United by faith, bound by love —<br>
+      beginning a blessed journey together
+    </p>
+
+    <a href="#story" class="btn">Celebrate With Us</a>
+  </div>
+
+  <div class="scroll-arrow">
+    <span>Scroll</span>
+    <div class="arrow-line"></div>
+  </div>
+</section>
+
+
+<!-- ══════ STORY / INVITE ══════ -->
+<section id="story" class="sec">
+  <div class="sec-inner">
+    <p class="eyebrow rv">Nikah Invitation</p>
+    <h2 class="sec-h rv d1">A Blessed Union</h2>
+    <div class="arabic-sub rv d1">دعوة نكاح</div>
+    <div class="rule rv d2"><span class="rule-ic">☽</span></div>
+
+    <div class="invite-arch rv d2">
+      <!-- Islamic arch top -->
+      <svg class="arch-top" viewBox="0 0 600 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,80 L0,40 Q300,-20 600,40 L600,80 Z" fill="rgba(255,255,255,0.82)"/>
+        <path d="M0,80 L0,40 Q300,-20 600,40" fill="none" stroke="rgba(200,148,58,0.3)" stroke-width="1.5"/>
+        <!-- decorative dots along arch -->
+        <circle cx="300" cy="6" r="3" fill="#C8943A" opacity=".4"/>
+        <circle cx="150" cy="26" r="2" fill="#C8943A" opacity=".3"/>
+        <circle cx="450" cy="26" r="2" fill="#C8943A" opacity=".3"/>
+        <!-- 8-pointed star center -->
+        <g transform="translate(300,6)">
+          <polygon points="0,-6 1.8,-1.8 6,0 1.8,1.8 0,6 -1.8,1.8 -6,0 -1.8,-1.8" fill="#C8943A" opacity=".5"/>
+        </g>
+        <!-- border line -->
+        <line x1="0" y1="80" x2="600" y2="80" stroke="rgba(200,148,58,0.2)" stroke-width="1"/>
+      </svg>
+
+      <div class="invite-card">
+        <!-- Quranic verse -->
+        <div class="quran-verse">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا</div>
+        <span class="quran-ref">Quran 30:21 — And of His signs is that He created for you spouses</span>
+
+        <div class="islamic-divider">
+          <svg width="20" height="20" viewBox="0 0 40 40"><g transform="translate(20,20)"><polygon points="0,-9 2.6,-2.6 9,0 2.6,2.6 0,9 -2.6,2.6 -9,0 -2.6,-2.6" fill="#C8943A" opacity=".6"/><polygon points="0,-9 2.6,-2.6 9,0 2.6,2.6 0,9 -2.6,2.6 -9,0 -2.6,-2.6" fill="#C8943A" opacity=".4" transform="rotate(45)"/></g></svg>
+        </div>
+
+        <p class="invite-text">
+          With hearts full of gratitude to Allah ﷻ<br>
+          and eyes filled with joyful tears,<br>
+          we humbly announce the Nikah of our beloved<br><br>
+          <strong>Arman</strong> &nbsp;&amp;&nbsp; <strong>Saima</strong><br><br>
+          Two souls brought together by the will of Allah —<br>
+          may their union be a source of mercy, love, and peace.<br><br>
+          We invite you, our dearest family and friends,<br>
+          to join us, witness this blessed bond,<br>
+          and pray for their happiness.<br><br>
+          Your duas and your presence mean everything to us.
+        </p>
+        <div class="invite-sig">— With love &amp; duas, both families 🌸</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════ EVENTS ══════ -->
+<section id="events" class="sec">
+  <div class="sec-inner">
+    <p class="eyebrow rv">The Celebrations</p>
+    <h2 class="sec-h rv d1">Four Evenings of Barakat</h2>
+    <div class="arabic-sub rv d1">أيام الفرح والبركة</div>
+    <div class="rule rv d2"><span class="rule-ic">✦</span></div>
+
+    <div class="grid4">
+      <div class="ec mehndi rv d1">
+        <span class="ec-icon">🌿</span>
+        <div class="ec-name">Mehndi</div>
+        <div class="ec-arabic">مهندي</div>
+        <div class="ec-date">28 May 2025 · Evening</div>
+        <div class="ec-venue">Home, Laheria Sarai<br>Darbhanga, Bihar</div>
+      </div>
+      <div class="ec haldi rv d2">
+        <span class="ec-icon">🌼</span>
+        <div class="ec-name">Haldi</div>
+        <div class="ec-arabic">حلدي</div>
+        <div class="ec-date">29 May 2025 · Morning</div>
+        <div class="ec-venue">Home, Laheria Sarai<br>Darbhanga, Bihar</div>
+      </div>
+      <div class="ec wed rv d3">
+        <span class="ec-icon">🕌</span>
+        <div class="ec-name">Nikah Night</div>
+        <div class="ec-arabic">ليلة النكاح</div>
+        <div class="ec-date">30 May 2025 · Evening</div>
+        <div class="ec-venue">Marriage Hall<br>Laheria Sarai, Darbhanga</div>
+      </div>
+      <div class="ec walima rv d4">
+        <span class="ec-icon">🤲</span>
+        <div class="ec-name">Walima</div>
+        <div class="ec-arabic">وليمة</div>
+        <div class="ec-date">1 June 2025 · Evening</div>
+        <div class="ec-venue">Marriage Hall<br>Laheria Sarai, Darbhanga</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════ VENUE ══════ -->
+<section id="venue">
+  <div class="venue-in">
+    <div class="venue-badge rv">📍 &nbsp;Venue — قاعة الأفراح</div>
+    <h2 class="venue-name rv d1">Marriage Hall</h2>
+    <p class="venue-loc rv d1">Laheria Sarai, Darbhanga, Bihar</p>
+    <p class="venue-desc rv d2">
+      Where laughter fills the air and duas rise to the heavens —<br>
+      a blessed gathering of hearts celebrating love.
+    </p>
+    <div class="venue-details rv d3">
+      <div><span class="vd-label">Nikah Night</span><span class="vd-val">30 May 2025</span></div>
+      <div><span class="vd-label">Walima Night</span><span class="vd-val">1 June 2025</span></div>
+      <div><span class="vd-label">Location</span><span class="vd-val">Laheria Sarai</span></div>
+      <div><span class="vd-label">City</span><span class="vd-val">Darbhanga, Bihar</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════ DUA SECTION ══════ -->
+<section id="dua">
+  <div class="dua-inner">
+    <!-- Decorative 8-pointed star -->
+    <svg style="margin:0 auto 1.5rem;display:block;opacity:.5" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="24,4 28,16 40,16 31,24 34,36 24,29 14,36 17,24 8,16 20,16" fill="#E5C06A"/>
+      <polygon points="24,4 28,16 40,16 31,24 34,36 24,29 14,36 17,24 8,16 20,16" fill="#E5C06A" opacity=".5" transform="rotate(20 24 24)"/>
+    </svg>
+
+    <p class="dua-label rv">A Prayer for the Couple</p>
+    <div class="dua-arabic rv d1">بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</div>
+    <p class="dua-trans rv d2">
+      "May Allah bless you, and shower His blessings upon you,<br>
+      and join you together in goodness."
+    </p>
+    <span class="dua-ref rv d3">— Dua upon marriage · Reported in Abu Dawud &amp; Tirmidhi</span>
+  </div>
+</section>
+
+
+<!-- ══════ COUNTDOWN ══════ -->
+<section id="countdown">
+  <p class="cd-eye rv">Counting down to the big day</p>
+  <div class="cd-arabic rv d1">حتى اليوم المبارك</div>
+  <p class="cd-quote rv d2">"The wait makes the moment more beautiful"</p>
+  <div class="cd-row rv d3" id="cdRow">
+    <div class="cd-item"><span class="cd-n" id="cd-d">--</span><span class="cd-u">Days</span></div>
+    <div class="cd-item"><span class="cd-n" id="cd-h">--</span><span class="cd-u">Hours</span></div>
+    <div class="cd-item"><span class="cd-n" id="cd-m">--</span><span class="cd-u">Minutes</span></div>
+    <div class="cd-item"><span class="cd-n" id="cd-s">--</span><span class="cd-u">Seconds</span></div>
+  </div>
+</section>
+
+
+<!-- ══════ CLOSING ══════ -->
+<section id="closing">
+  <svg class="close-wave top" viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,35 Q360,0 720,35 Q1080,70 1440,35 L1440,0 L0,0Z" fill="rgba(244,184,193,0.15)"/>
+  </svg>
+
+  <div class="close-in">
+    <div class="rule rv" style="margin-bottom:2rem"><span class="rule-ic">☽</span></div>
+
+    <div class="close-arabic rv d1">جَزَاكُمُ اللَّهُ خَيْرًا</div>
+    <span class="close-arabic-sub rv d1">May Allah reward you with goodness</span>
+
+    <p class="close-quote rv d2">
+      "Two hearts, one dua — united under Allah's<br>
+      most beautiful name: Ar-Raheem, the Most Merciful."
+    </p>
+    <p class="close-sub rv d3">
+      Your love, prayers, and blessings are the most<br>
+      precious gift you could bring.<br>
+      Come, celebrate this nikah with us.
+    </p>
+    <div class="close-names rv d3">Arman &amp; Saima</div>
+    <div class="close-date rv d3">28 May – 1 June 2025 · Darbhanga</div>
+    <a href="#events" class="btn rv d4">Join Us in Celebration 🌸</a>
+  </div>
+
+  <svg class="close-wave bot" viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,35 Q360,70 720,35 Q1080,0 1440,35 L1440,70 L0,70Z" fill="rgba(244,184,193,0.15)"/>
+  </svg>
+</section>
+
+
+<footer>
+  <span class="footer-arabic">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ</span>
+  <p>Made with 💗 &amp; duas for <strong>Arman &amp; Saima</strong> · May 2025 · Darbhanga, Bihar</p>
+</footer>
+
+
+<script>
+/* ── Scroll Reveal ── */
+const revEls = document.querySelectorAll('.rv');
+if('IntersectionObserver' in window){
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target)}
+    });
+  },{threshold:0, rootMargin:'0px 0px -40px 0px'});
+  revEls.forEach(el=>obs.observe(el));
+} else {
+  revEls.forEach(el=>el.classList.add('show'));
+}
+
+/* ── Countdown ── */
+const weddingDate = new Date('2025-05-30T18:00:00');
+function tick(){
+  const diff = weddingDate - Date.now();
+  if(diff <= 0){
+    document.getElementById('cdRow').innerHTML = '<p style="color:#fff;font-family:\'Amiri\',serif;font-size:clamp(1.2rem,4vw,2rem);padding:1rem">ماشاء الله — The blessed day has arrived! 🌙</p>';
+    return;
+  }
+  const pad = n => String(Math.floor(n)).padStart(2,'0');
+  document.getElementById('cd-d').textContent = pad(diff/864e5);
+  document.getElementById('cd-h').textContent = pad((diff%864e5)/36e5);
+  document.getElementById('cd-m').textContent = pad((diff%36e5)/6e4);
+  document.getElementById('cd-s').textContent = pad((diff%6e4)/1e3);
+}
+tick(); setInterval(tick,1000);
+
+/* ── Smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>
