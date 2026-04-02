@@ -41,44 +41,85 @@ body{font-family:'DM Sans',sans-serif;background:#f4faf8;color:#3d5050;overflow-
   pointer-events:none;
   background:#0a1818;
 }
-/* Left curtain */
+
+/* Smooth fade-out of entire splash AFTER curtains open */
+#splash{animation:splashHide 0s 5.4s both}
+@keyframes splashHide{to{visibility:hidden;pointer-events:none}}
+
+/* Smooth full-page fade bridge between dark splash and hero */
+#splash-fade{
+  position:fixed;inset:0;z-index:9998;
+  background:#0a1818;
+  pointer-events:none;
+  animation:bridgeFade 1.4s cubic-bezier(.4,0,.2,1) 4s both;
+}
+@keyframes bridgeFade{
+  0%{opacity:1}
+  100%{opacity:0}
+}
+
 .curtain-l,.curtain-r{
   position:absolute;top:0;bottom:0;width:50%;
-  background:linear-gradient(135deg,#99CDD8 0%,#DAEBE3 50%,#99CDD8 100%);
   z-index:2;
 }
 .curtain-l{
   left:0;
-  background:linear-gradient(160deg,#1a4a52,#2a6e7a,#1a4a52);
-  animation:curtainLeft 1.2s cubic-bezier(.7,0,.3,1) 3.2s both;
+  background:linear-gradient(160deg,#1a4a52 0%,#2a6e7a 40%,#1e5560 70%,#163d48 100%);
+  animation:curtainLeft 1.5s cubic-bezier(.77,0,.18,1) 3s both;
   transform-origin:left center;
+  box-shadow:inset -6px 0 20px rgba(0,0,0,.4);
 }
 .curtain-r{
   right:0;
-  background:linear-gradient(200deg,#1a4a52,#2a6e7a,#1a4a52);
-  animation:curtainRight 1.2s cubic-bezier(.7,0,.3,1) 3.2s both;
+  background:linear-gradient(200deg,#1a4a52 0%,#2a6e7a 40%,#1e5560 70%,#163d48 100%);
+  animation:curtainRight 1.5s cubic-bezier(.77,0,.18,1) 3s both;
   transform-origin:right center;
+  box-shadow:inset 6px 0 20px rgba(0,0,0,.4);
 }
-@keyframes curtainLeft{to{transform:translateX(-100%)}}
-@keyframes curtainRight{to{transform:translateX(100%)}}
+@keyframes curtainLeft{to{transform:translateX(-101%)}}
+@keyframes curtainRight{to{transform:translateX(101%)}}
 
-/* Curtain gold border edge */
+/* Curtain gold edge */
 .curtain-l::after,.curtain-r::after{
-  content:'';position:absolute;top:0;bottom:0;width:6px;
-  background:linear-gradient(to bottom,transparent,#99CDD8,#657166,#99CDD8,transparent);
+  content:'';position:absolute;top:0;bottom:0;width:5px;
+  background:linear-gradient(to bottom,transparent 0%,#99CDD8 20%,#DAEBE3 50%,#99CDD8 80%,transparent 100%);
+  opacity:.6;
 }
 .curtain-l::after{right:0}
 .curtain-r::after{left:0}
-
-/* Curtain tassel */
 .curtain-l::before,.curtain-r::before{
-  content:'✦';position:absolute;
-  font-size:1.5rem;color:#E5C06A;
-  top:50%;transform:translateY(-50%);
-  filter:drop-shadow(0 0 8px #E5C06A);
+  content:'✦';position:absolute;font-size:1.4rem;color:#DAEBE3;
+  top:50%;transform:translateY(-50%);opacity:.7;
+  filter:drop-shadow(0 0 6px #99CDD8);
 }
-.curtain-l::before{right:10px}
-.curtain-r::before{left:10px}
+.curtain-l::before{right:12px}
+.curtain-r::before{left:12px}
+
+/* ══════════════════════════════════════════
+   GLOBAL PARTICLES — hearts & rose leaves
+   Visible, elegant, high quality
+══════════════════════════════════════════ */
+.particle{
+  position:absolute;
+  pointer-events:none;
+  z-index:10;
+  opacity:0;
+  will-change:transform,opacity;
+  animation:particleFall var(--pf-d,10s) var(--pf-dl,0s) linear infinite;
+}
+@keyframes particleFall{
+  0%  { opacity:0; transform:translateY(-40px) translateX(0) rotate(0deg) scale(var(--pf-s,1)); }
+  8%  { opacity:var(--pf-op,0.8); }
+  85% { opacity:var(--pf-op,0.8); }
+  100%{ opacity:0; transform:translateY(108vh) translateX(var(--pf-x,25px)) rotate(var(--pf-r,300deg)) scale(var(--pf-s,1)); }
+}
+.particle-inner{
+  animation:particleSway var(--pf-sw,3.5s) ease-in-out var(--pf-swd,0s) infinite alternate;
+}
+@keyframes particleSway{
+  from{ transform:translateX(0px); }
+  to  { transform:translateX(var(--pf-swx,16px)); }
+}
 
 /* Bismillah content inside splash */
 .splash-content{
@@ -172,45 +213,47 @@ body{font-family:'DM Sans',sans-serif;background:#f4faf8;color:#3d5050;overflow-
 
 /* Hero text */
 .hero-in{position:relative;z-index:4;text-align:center;width:100%;animation:fadeUp 1.5s .5s both}
-.h-bism{font-family:'Amiri',serif;font-size:clamp(1.3rem,4vw,2.1rem);color:#3d5050;margin-bottom:.3rem;letter-spacing:.04em;text-shadow:0 1px 10px rgba(255,255,255,.5)}
-.h-bism-sub{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(61,80,80,.65);margin-bottom:1.5rem}
+.h-bism{font-family:'Amiri',serif;font-size:clamp(1.3rem,4vw,2.1rem);color:#1a3030;margin-bottom:.3rem;letter-spacing:.04em;font-weight:700}
+.h-bism-sub{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:#2a4040;margin-bottom:1.5rem;font-weight:600}
 .h-pill{
   display:inline-flex;align-items:center;gap:.5rem;
-  font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;
-  color:#3d5050;background:rgba(255,255,255,.45);
-  border:1px solid rgba(153,205,216,.5);padding:.38rem 1.3rem;border-radius:50px;margin-bottom:1.6rem;
+  font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;
+  color:#1a3030;background:rgba(255,255,255,.6);
+  border:1px solid rgba(101,113,102,.4);padding:.4rem 1.3rem;border-radius:50px;margin-bottom:1.6rem;
+  font-weight:600;
 }
 .h-dot{width:4px;height:4px;border-radius:50%;background:#657166}
 .h-names{
-  font-family:'Cormorant Garamond',serif;font-weight:300;
-  font-size:clamp(3.2rem,12vw,7rem);line-height:1;color:#3d5050;
-  text-shadow:0 2px 20px rgba(153,205,216,.3);
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:clamp(3.2rem,12vw,7rem);line-height:1;color:#1a2e2e;
+  text-shadow:0 2px 12px rgba(255,255,255,.4);
 }
 .h-heart{
-  display:block;font-size:clamp(1.4rem,5vw,2.2rem);margin:.18em 0;color:#F3C3B2;
+  display:block;font-size:clamp(1.4rem,5vw,2.2rem);margin:.18em 0;color:#c94a5e;
   animation:hbeat 2.6s ease-in-out infinite;
-  filter:drop-shadow(0 0 10px rgba(243,195,178,.8));
+  filter:drop-shadow(0 0 8px rgba(201,74,94,.5));
 }
 @keyframes hbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
 .h-tag{
-  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
-  font-size:clamp(.9rem,3vw,1.3rem);color:#4a6060;line-height:1.65;margin-top:1.2rem;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+  font-size:clamp(.95rem,3vw,1.35rem);color:#1e3838;line-height:1.65;margin-top:1.2rem;
 }
 .btn{
-  display:inline-block;margin-top:2rem;padding:.85rem 2.6rem;
-  font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  display:inline-block;margin-top:2rem;padding:.88rem 2.8rem;
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
   color:#fff;text-decoration:none;
-  background:linear-gradient(135deg,#657166,#99CDD8);
-  border-radius:50px;box-shadow:0 8px 30px rgba(101,113,102,.35);
+  background:linear-gradient(135deg,#3d5e58,#2a7a8a);
+  border-radius:50px;box-shadow:0 8px 30px rgba(42,122,138,.4);
   transition:transform .3s,box-shadow .3s;-webkit-tap-highlight-color:transparent;
+  font-weight:500;
 }
 .btn:active{transform:scale(.97)}
 .scroll-arr{
   position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);
   z-index:4;display:flex;flex-direction:column;align-items:center;gap:.4rem;
 }
-.scroll-arr span{font-size:.55rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(61,80,80,.55)}
-.scroll-line{width:1px;height:36px;background:linear-gradient(#657166,transparent);animation:scrollGrow 2s ease-in-out infinite}
+.scroll-arr span{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:#2a4040;font-weight:600}
+.scroll-line{width:1px;height:36px;background:linear-gradient(#2a4040,transparent);animation:scrollGrow 2s ease-in-out infinite}
 @keyframes scrollGrow{0%{transform:scaleY(0);transform-origin:top;opacity:1}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom;opacity:0}}
 
 /* ══════════════════════════════════════════
@@ -252,25 +295,25 @@ body{font-family:'DM Sans',sans-serif;background:#f4faf8;color:#3d5050;overflow-
 .sec{padding:5rem 1.4rem}
 .sec-in{max-width:860px;margin:0 auto}
 .eyebrow{
-  font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;
-  color:#657166;text-align:center;margin-bottom:.7rem;
-  font-weight:500;
+  font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
+  color:#3d5e58;text-align:center;margin-bottom:.7rem;font-weight:700;
 }
 .sec-h{
-  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-family:'Cormorant Garamond',serif;font-weight:600;
   font-size:clamp(2.2rem,5.5vw,3.4rem);
   text-align:center;line-height:1.1;margin-bottom:.5rem;
-  color:#2a3d3a;
+  color:#1a2e2a;
 }
 .ar-sub{
   font-family:'Amiri',serif;
   font-size:clamp(1.2rem,3.5vw,1.7rem);
-  color:#657166;text-align:center;margin-bottom:2rem;letter-spacing:.04em;
+  color:#3d5e58;text-align:center;margin-bottom:2rem;letter-spacing:.04em;
+  font-weight:700;
 }
 .rule{display:flex;align-items:center;gap:.8rem;justify-content:center;margin-bottom:2.4rem}
-.rule::before,.rule::after{content:'';flex:1;max-width:80px;height:1px;background:linear-gradient(to right,transparent,#99CDD8)}
-.rule::after{background:linear-gradient(to left,transparent,#99CDD8)}
-.rule-ic{color:#99CDD8;font-size:.9rem}
+.rule::before,.rule::after{content:'';flex:1;max-width:80px;height:1px;background:linear-gradient(to right,transparent,#3d5e58)}
+.rule::after{background:linear-gradient(to left,transparent,#3d5e58)}
+.rule-ic{color:#3d5e58;font-size:.9rem;font-weight:700}
 
 /* Arch invite card */
 .invite-arch{max-width:680px;margin:0 auto}
@@ -294,24 +337,24 @@ body{font-family:'DM Sans',sans-serif;background:#f4faf8;color:#3d5050;overflow-
 .qverse{
   font-family:'Amiri',serif;
   font-size:clamp(1.3rem,4vw,2rem);
-  color:#2a3d3a;
-  line-height:1.75;margin-bottom:.5rem;letter-spacing:.03em;
+  color:#1a2e2a;
+  line-height:1.75;margin-bottom:.5rem;letter-spacing:.03em;font-weight:700;
 }
 .qref{
-  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
-  color:#99CDD8;margin-bottom:2rem;display:block;font-weight:500;
+  font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+  color:#3d5e58;margin-bottom:2rem;display:block;font-weight:700;
 }
 .idiv{display:flex;align-items:center;gap:.8rem;justify-content:center;margin:1.6rem 0}
-.idiv::before,.idiv::after{content:'';flex:1;max-width:100px;height:1px;background:linear-gradient(to right,transparent,#CFD8C4)}
-.idiv::after{background:linear-gradient(to left,transparent,#CFD8C4)}
+.idiv::before,.idiv::after{content:'';flex:1;max-width:100px;height:1px;background:linear-gradient(to right,transparent,#657166)}
+.idiv::after{background:linear-gradient(to left,transparent,#657166)}
 .inv-text{
-  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
-  font-size:clamp(1.05rem,2.8vw,1.4rem);line-height:2;color:#2a3d3a;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+  font-size:clamp(1.08rem,2.8vw,1.4rem);line-height:2;color:#1a2e2a;
 }
-.inv-text strong{font-style:normal;font-weight:600;color:#657166}
+.inv-text strong{font-style:normal;font-weight:700;color:#2a5050}
 .inv-sig{
   margin-top:2.2rem;
-  font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:500;color:#99CDD8;
+  font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:#3d5e58;
 }
 
 /* ══════════════════════════════════════════
@@ -363,49 +406,75 @@ body{font-family:'DM Sans',sans-serif;background:#f4faf8;color:#3d5050;overflow-
 .ec:nth-child(2) .ec-icon{animation-delay:.5s}
 .ec:nth-child(3) .ec-icon{animation-delay:1s}
 @keyframes ecBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.ec-name{font-family:"Cormorant Garamond",serif;font-size:1.8rem;font-weight:600;color:#2a3d3a;margin-bottom:.2rem}
-.ec-ar{font-family:"Amiri",serif;font-size:1rem;color:#99CDD8;margin-bottom:.4rem}
-.ec-date{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:#657166;font-weight:600;margin-bottom:.5rem}
-.ec-venue{font-size:.85rem;color:#4a5e58;line-height:1.65;font-weight:400}
+.ec-name{font-family:"Cormorant Garamond",serif;font-size:1.8rem;font-weight:700;color:#1a2e2a;margin-bottom:.2rem}
+.ec-ar{font-family:"Amiri",serif;font-size:1rem;color:#3d5e58;margin-bottom:.4rem;font-weight:700}
+.ec-date{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#2a4a44;font-weight:700;margin-bottom:.5rem}
+.ec-venue{font-size:.88rem;color:#2a3e38;line-height:1.65;font-weight:500}
 
 /* ══════════════════════════════════════════
-   5. VENUE — Golden Dusk Palace Scene
+   5. LOCATION — Elegant map-style direction card
 ══════════════════════════════════════════ */
 #venue{
   position:relative;overflow:hidden;
-  background:linear-gradient(160deg,#1a0a28 0%,#2d1245 40%,#3d1a3a 100%);
+  background:linear-gradient(160deg,#0f2a22 0%,#1a3d30 50%,#112820 100%);
   padding:6rem 1.4rem;
 }
 #venue::before{
   content:'';position:absolute;inset:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 60% 50% at 50% 100%,rgba(229,192,106,.15),transparent),
-    radial-gradient(ellipse 40% 40% at 20% 50%,rgba(201,100,122,.08),transparent),
-    radial-gradient(ellipse 40% 40% at 80% 30%,rgba(100,180,220,.06),transparent);
+    radial-gradient(ellipse 60% 50% at 50% 0%,rgba(153,205,216,.12),transparent),
+    radial-gradient(ellipse 40% 60% at 10% 80%,rgba(218,235,227,.08),transparent),
+    radial-gradient(ellipse 40% 40% at 90% 30%,rgba(243,195,178,.06),transparent);
 }
-/* Sparkling venue bg SVG */
-.venue-sparkle{position:absolute;inset:0;pointer-events:none;z-index:1}
-.venue-in{max-width:680px;margin:0 auto;text-align:center;position:relative;z-index:2}
+/* subtle Islamic tile pattern */
+#venue::after{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpolygon points='30,4 34,18 48,18 37,27 41,41 30,32 19,41 23,27 12,18 26,18' fill='none' stroke='%23DAEBE3' stroke-width='.25'/%3E%3C/svg%3E");
+  background-size:60px 60px;opacity:.06;pointer-events:none;
+}
+.venue-in{max-width:760px;margin:0 auto;text-align:center;position:relative;z-index:2}
 .v-badge{
   display:inline-flex;align-items:center;gap:.5rem;
-  background:rgba(255,255,255,.12);border:1px solid rgba(153,205,216,.4);
-  padding:.45rem 1.4rem;border-radius:50px;
-  font-size:.65rem;letter-spacing:.24em;text-transform:uppercase;color:#DAEBE3;margin-bottom:1.6rem;font-weight:500;
+  background:rgba(255,255,255,.12);border:1px solid rgba(218,235,227,.5);
+  padding:.45rem 1.6rem;border-radius:50px;
+  font-size:.65rem;letter-spacing:.26em;text-transform:uppercase;
+  color:#ffffff;margin-bottom:1.8rem;font-weight:700;
 }
-.v-name{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2.2rem,9vw,4.5rem);color:#ffffff;line-height:1.05;margin-bottom:.5rem;text-shadow:0 2px 20px rgba(153,205,216,.3)}
-.v-loc{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#F3C3B2;margin-bottom:1.4rem;font-weight:500}
-.v-desc{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.85);line-height:1.85;margin-bottom:2.2rem}
-.v-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:0}
-@media(max-width:520px){.v-cards{grid-template-columns:1fr}}
-.v-card{
-  background:rgba(255,255,255,.1);border:1px solid rgba(153,205,216,.3);
-  border-radius:18px;padding:1.6rem 1rem;text-align:center;
-  box-shadow:0 8px 30px rgba(0,0,0,.2);
+.v-name{
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:clamp(2rem,7vw,4rem);
+  color:#ffffff;line-height:1.1;margin-bottom:.6rem;
 }
-.v-card-icon{font-size:1.8rem;margin-bottom:.5rem;display:block}
-.v-card-event{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#DAEBE3;margin-bottom:.3rem;display:block;font-weight:600}
-.v-card-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:#ffffff;margin-bottom:.3rem}
-.v-card-date{font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.6}
+.v-loc{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:#F3C3B2;margin-bottom:1rem;font-weight:700}
+.v-desc{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+  font-size:clamp(1rem,2.2vw,1.25rem);
+  color:rgba(255,255,255,.92);line-height:1.85;margin-bottom:2.8rem;
+}
+
+/* Location timeline cards */
+.loc-timeline{display:flex;flex-direction:column;gap:1.2rem;text-align:left;margin-bottom:2.4rem}
+.loc-item{
+  display:flex;align-items:flex-start;gap:1.2rem;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(218,235,227,.25);
+  border-left:4px solid var(--lc,#99CDD8);
+  border-radius:0 16px 16px 0;
+  padding:1.5rem 1.6rem;
+  transition:background .3s;
+}
+.loc-item:hover{background:rgba(255,255,255,.16)}
+.loc-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.4rem;font-weight:400;
+  color:var(--lc,#99CDD8);line-height:1;
+  min-width:2.2rem;margin-top:.1rem;
+}
+.loc-body{flex:1}
+.loc-event{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lc,#DAEBE3);font-weight:700;margin-bottom:.35rem;display:block}
+.loc-name{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;color:#ffffff;margin-bottom:.3rem;line-height:1.2}
+.loc-address{font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.65;font-weight:500}
+.loc-date{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-top:.35rem;display:block;font-weight:600}
 
 /* ══════════════════════════════════════════
    6. DUA — Sacred Dark with Islamic Pattern
@@ -421,10 +490,10 @@ body{font-family:'DM Sans',sans-serif;background:#f4faf8;color:#3d5050;overflow-
   background-size:80px 80px;opacity:.07;pointer-events:none;
 }
 .dua-in{max-width:640px;margin:0 auto;position:relative;z-index:1}
-.dua-label{font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:#DAEBE3;margin-bottom:1.2rem;font-weight:500}
-.dua-ar{font-family:'Amiri',serif;font-size:clamp(1.7rem,5.5vw,2.8rem);color:#DAEBE3;line-height:1.65;margin-bottom:.8rem;letter-spacing:.03em}
-.dua-tr{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(.95rem,2.5vw,1.2rem);color:rgba(255,255,255,.85);line-height:1.8;margin-bottom:.6rem}
-.dua-ref{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(218,235,227,.65);font-weight:500}
+.dua-label{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:#ffffff;margin-bottom:1.2rem;font-weight:700}
+.dua-ar{font-family:'Amiri',serif;font-size:clamp(1.7rem,5.5vw,2.8rem);color:#ffffff;line-height:1.65;margin-bottom:.8rem;letter-spacing:.03em;font-weight:700}
+.dua-tr{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.95);line-height:1.8;margin-bottom:.6rem}
+.dua-ref{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.8);font-weight:600}
 
 /* ══════════════════════════════════════════
    7. COUNTDOWN — Deep Night + Rose Glow
@@ -440,13 +509,13 @@ body{font-family:'DM Sans',sans-serif;background:#f4faf8;color:#3d5050;overflow-
     radial-gradient(ellipse 50% 50% at 20% 50%,rgba(229,192,106,.08),transparent);
   pointer-events:none;
 }
-.cd-eye{font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:#fff;margin-bottom:.8rem;font-weight:500;opacity:.9}
-.cd-ar{font-family:'Amiri',serif;font-size:clamp(1.2rem,4vw,1.8rem);color:#fff;margin-bottom:.4rem;opacity:.9}
-.cd-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(1rem,3vw,1.5rem);color:rgba(255,255,255,.88);margin-bottom:2.4rem}
+.cd-eye{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:#fff;margin-bottom:.8rem;font-weight:700}
+.cd-ar{font-family:'Amiri',serif;font-size:clamp(1.2rem,4vw,1.8rem);color:#fff;margin-bottom:.4rem;font-weight:700}
+.cd-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(1rem,3vw,1.5rem);color:#fff;margin-bottom:2.4rem}
 .cd-row{display:flex;justify-content:center;gap:clamp(.8rem,4vw,2.2rem);flex-wrap:wrap;position:relative;z-index:1}
 .cd-item{text-align:center}
-.cd-n{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2.6rem,9vw,4.5rem);color:#fff;line-height:1;display:block}
-.cd-u{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-top:.3rem;display:block;font-weight:500}
+.cd-n{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(2.6rem,9vw,4.5rem);color:#fff;line-height:1;display:block}
+.cd-u{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;margin-top:.3rem;display:block;font-weight:700}
 
 /* ══════════════════════════════════════════
    8. CLOSING — Rose Garden + Soft Glow
@@ -464,13 +533,13 @@ body{font-family:'DM Sans',sans-serif;background:#f4faf8;color:#3d5050;overflow-
 }
 .close-wave{position:absolute;left:0;right:0;pointer-events:none}
 .close-wave.top{top:0}.close-wave.bot{bottom:0}
-.close-in{max-width:620px;margin:0 auto;position:relative;z-index:1}
-.close-ar{font-family:'Amiri',serif;font-size:clamp(1.5rem,5vw,2.2rem);color:#657166;margin-bottom:.4rem;font-weight:700}
-.close-ar-sub{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#657166;opacity:.75;margin-bottom:1.8rem;display:block;font-weight:500}
-.close-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(1.25rem,3.5vw,2rem);color:#2a3d3a;line-height:1.75;margin-bottom:1.6rem}
-.close-sub{font-size:.9rem;color:#4a5e58;line-height:1.8;margin-bottom:2.4rem;font-weight:400}
-.close-names{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2rem,7vw,3.2rem);color:#657166;margin-bottom:.4rem}
-.close-date{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#99CDD8;margin-bottom:2.4rem;font-weight:600}
+.close-in{max-width:620px;margin:0 auto;position:relative;z-index:2}
+.close-ar{font-family:'Amiri',serif;font-size:clamp(1.5rem,5vw,2.2rem);color:#1a2e2a;margin-bottom:.4rem;font-weight:700}
+.close-ar-sub{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#2a4040;margin-bottom:1.8rem;display:block;font-weight:700}
+.close-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:clamp(1.3rem,3.5vw,2rem);color:#1a2e2a;line-height:1.75;margin-bottom:1.6rem}
+.close-sub{font-size:.92rem;color:#2a3e38;line-height:1.8;margin-bottom:2.4rem;font-weight:500}
+.close-names{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(2rem,7vw,3.2rem);color:#1a2e2a;margin-bottom:.4rem}
+.close-date{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#3d5e58;margin-bottom:2.4rem;font-weight:700}
 
 /* Falling rose petals in closing */
 .rose-petal{
@@ -511,21 +580,17 @@ footer strong{color:rgba(218,235,227,.85)}
 <!-- ══════════════════════════════════════
   BISMILLAH SPLASH with CURTAIN OPENING
 ══════════════════════════════════════ -->
+<div id="splash-fade"></div>
 <div id="splash">
-  <!-- Splash stars bg -->
   <div class="splash-stars" id="splashStars"></div>
-
-  <!-- Bismillah content -->
   <div class="splash-content">
     <svg class="splash-star" width="52" height="52" viewBox="0 0 52 52">
-      <polygon points="26,3 30,18 46,18 33,28 38,43 26,34 14,43 19,28 6,18 22,18" fill="#E5C06A" opacity=".9"/>
-      <polygon points="26,3 30,18 46,18 33,28 38,43 26,34 14,43 19,28 6,18 22,18" fill="#E5C06A" opacity=".5" transform="rotate(20 26 26)"/>
+      <polygon points="26,3 30,18 46,18 33,28 38,43 26,34 14,43 19,28 6,18 22,18" fill="#DAEBE3" opacity=".95"/>
+      <polygon points="26,3 30,18 46,18 33,28 38,43 26,34 14,43 19,28 6,18 22,18" fill="#99CDD8" opacity=".5" transform="rotate(20 26 26)"/>
     </svg>
     <div class="splash-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
     <div class="splash-trans">In the name of Allah, the Most Gracious, the Most Merciful</div>
   </div>
-
-  <!-- Curtains -->
   <div class="curtain-l"></div>
   <div class="curtain-r"></div>
 </div>
@@ -769,7 +834,7 @@ footer strong{color:rgba(218,235,227,.85)}
         <span class="ec-icon">🌼</span>
         <div class="ec-name">Haldi</div>
         <div class="ec-ar">حلدي</div>
-        <div class="ec-date">30 May 2026 · Morning</div>
+        <div class="ec-date">30 May 2026 · Evening</div>
         <div class="ec-venue">🏠 Home<br>Laheria Sarai, Darbhanga</div>
       </div>
       <div class="ec nikah rv d2">
@@ -792,46 +857,44 @@ footer strong{color:rgba(218,235,227,.85)}
 
 
 <!-- ══════════════════════════════════════
-  VENUE — Three Venues Summary
+  LOCATION — Elegant Journey Timeline
 ══════════════════════════════════════ -->
 <section id="venue">
-  <!-- Sparkle SVG bg -->
-  <svg class="venue-sparkle" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
-    <g fill="#E5C06A" opacity=".12">
-      <polygon points="100,50 103,60 113,60 105,66 108,76 100,70 92,76 95,66 87,60 97,60"/>
-      <polygon points="900,100 903,110 913,110 905,116 908,126 900,120 892,126 895,116 887,110 897,110"/>
-      <polygon points="200,400 203,410 213,410 205,416 208,426 200,420 192,426 195,416 187,410 197,410"/>
-      <polygon points="800,350 803,360 813,360 805,366 808,376 800,370 792,376 795,366 787,360 797,360"/>
-      <polygon points="500,80 503,90 513,90 505,96 508,106 500,100 492,106 495,96 487,90 497,90"/>
-    </g>
-  </svg>
-
   <div class="venue-in">
-    <div class="v-badge rv">📍 &nbsp;Our Venues — قاعات الأفراح</div>
-    <h2 class="v-name rv d1">Celebrate With Us</h2>
+    <div class="v-badge rv">🗓️ &nbsp;Where to Find Us — أماكن الاحتفال</div>
+    <h2 class="v-name rv d1">Your Journey to Our Joy</h2>
     <p class="v-loc rv d1">Darbhanga, Bihar · India</p>
     <p class="v-desc rv d2">
-      Three beautiful venues, three unforgettable evenings —<br>
-      all filled with love, laughter, and the blessings of Allah.
+      Each venue holds a chapter of our love story —<br>
+      follow the path of barakat and celebration.
     </p>
-    <div class="v-cards rv d3">
-      <div class="v-card">
-        <span class="v-card-icon">🌼</span>
-        <span class="v-card-event">Haldi · 29 May</span>
-        <div class="v-card-name">Home</div>
-        <div class="v-card-date">Laheria Sarai<br>Darbhanga</div>
+    <div class="loc-timeline rv d3">
+      <div class="loc-item" style="--lc:#FDE8D3">
+        <div class="loc-num">01</div>
+        <div class="loc-body">
+          <span class="loc-event">🌼 Haldi Ceremony</span>
+          <div class="loc-name">At Home — بيت العائلة</div>
+          <div class="loc-address">Laheria Sarai, Darbhanga, Bihar</div>
+          <span class="loc-date">30 May 2026 · Evening</span>
+        </div>
       </div>
-      <div class="v-card">
-        <span class="v-card-icon">🕌</span>
-        <span class="v-card-event">Nikah/Barat · 30 May</span>
-        <div class="v-card-name">Waqf Marriage Hall</div>
-        <div class="v-card-date">Laheria Sarai<br>Darbhanga</div>
+      <div class="loc-item" style="--lc:#99CDD8">
+        <div class="loc-num">02</div>
+        <div class="loc-body">
+          <span class="loc-event">🕌 Nikah &amp; Barat</span>
+          <div class="loc-name">Waqf Marriage Hall — قاعة الأوقاف</div>
+          <div class="loc-address">Laheria Sarai, Darbhanga, Bihar</div>
+          <span class="loc-date">31 May 2026 · Evening</span>
+        </div>
       </div>
-      <div class="v-card">
-        <span class="v-card-icon">🌿</span>
-        <span class="v-card-event">Walima · 2 June</span>
-        <div class="v-card-name">Salik Vatika Hall</div>
-        <div class="v-card-date">Darbhanga<br>Bihar</div>
+      <div class="loc-item" style="--lc:#CFD8C4">
+        <div class="loc-num">03</div>
+        <div class="loc-body">
+          <span class="loc-event">🤲 Walima Reception</span>
+          <div class="loc-name">Salil Vatika Hall — قاعة سليل واتيكا</div>
+          <div class="loc-address">Darbhanga, Bihar</div>
+          <span class="loc-date">2 June 2026 · Evening</span>
+        </div>
       </div>
     </div>
   </div>
@@ -919,59 +982,120 @@ footer strong{color:rgba(218,235,227,.85)}
 
 
 <script>
-/* ── Splash stars ── */
-(function(){
-  const el = document.getElementById('splashStars');
-  if(!el) return;
-  for(let i=0;i<80;i++){
-    const s=document.createElement('div');
-    const sz=Math.random()*2+.5;
-    s.style.cssText=`position:absolute;border-radius:50%;background:#fff;
-      width:${sz}px;height:${sz}px;
-      left:${Math.random()*100}%;top:${Math.random()*100}%;
-      opacity:${Math.random()*.7+.1};`;
-    el.appendChild(s);
-  }
-})();
+/* ══════════════════════
+   HEARTS & ROSE LEAVES — premium quality particles
+   Visible on light AND dark backgrounds
+══════════════════════ */
 
-/* ── Hero stars ── */
-(function(){
-  const el = document.getElementById('starsEl');
-  if(!el) return;
-  for(let i=0;i<130;i++){
-    const s=document.createElement('div');
-    s.className='star-dot';
-    const sz=Math.random()*2.5+.4;
-    s.style.cssText=`width:${sz}px;height:${sz}px;
-      left:${Math.random()*100}%;top:${Math.random()*78}%;
-      --t:${(Math.random()*3+1.4).toFixed(1)}s;
-      --tl:${(Math.random()*4).toFixed(1)}s;`;
-    el.appendChild(s);
-  }
-})();
-
-/* ── Scroll Reveal ── */
-const rvEls = document.querySelectorAll('.rv');
-if('IntersectionObserver' in window){
-  const obs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target)}
-    });
-  },{threshold:0, rootMargin:'0px 0px -40px 0px'});
-  rvEls.forEach(el=>obs.observe(el));
-} else {
-  rvEls.forEach(el=>el.classList.add('show'));
+function heartSVG(color, size){
+  return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 32 30" xmlns="http://www.w3.org/2000/svg"><path d="M16,27 C15,27 2,17.5 2,9.5 C2,5.2 5.4,2 9.5,2 C12.2,2 14.6,3.5 16,5.8 C17.4,3.5 19.8,2 22.5,2 C26.6,2 30,5.2 30,9.5 C30,17.5 17,27 16,27Z" fill="'+color+'"/></svg>';
 }
 
-/* ── Countdown ── */
-const wed = new Date('2026-05-31T18:00:00');
+function leafSVG(color, size){
+  return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 26 34" xmlns="http://www.w3.org/2000/svg"><path d="M13,2 C13,2 24,9 22,21 C20,29 13,32 13,32 C13,32 6,29 4,21 C2,9 13,2 13,2Z" fill="'+color+'"/><line x1="13" y1="4" x2="13" y2="30" stroke="rgba(255,255,255,.3)" stroke-width="1.2" stroke-linecap="round"/><line x1="13" y1="12" x2="8" y2="18" stroke="rgba(255,255,255,.2)" stroke-width=".8"/><line x1="13" y1="12" x2="18" y2="18" stroke="rgba(255,255,255,.2)" stroke-width=".8"/></svg>';
+}
+
+var HEART_LIGHT = ['#c94a5e','#d45070','#b83555','#e06080','#c04868'];
+var HEART_DARK  = ['#f5a8b8','#f8c0cc','#f0909a','#fad0d8','#eaa0b0'];
+var LEAF_LIGHT  = ['#2e6b45','#3d7a52','#256040','#4a8860','#357055'];
+var LEAF_DARK   = ['#a0d8b0','#b5e0c0','#88c898','#c8ecd4','#98d0a8'];
+
+function rnd(a,b){ return a+Math.random()*(b-a); }
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+function spawn(section, count, darkBg){
+  for(var i=0;i<count;i++){
+    var isHeart = Math.random()>0.4;
+    var size  = Math.round(rnd(isHeart?15:13, isHeart?26:22));
+    var color = isHeart ? pick(darkBg?HEART_DARK:HEART_LIGHT) : pick(darkBg?LEAF_DARK:LEAF_LIGHT);
+    var dur   = rnd(8,14).toFixed(1);
+    var delay = rnd(0,parseFloat(dur)*0.88).toFixed(1);
+    var left  = rnd(2,95).toFixed(1);
+    var driftX= (rnd(16,38)*(Math.random()>.5?1:-1)).toFixed(0);
+    var rot   = (Math.round(rnd(200,440))*(Math.random()>.5?1:-1));
+    var op    = rnd(0.78,0.96).toFixed(2);
+    var scale = rnd(0.88,1.14).toFixed(2);
+    var swD   = rnd(2.4,4.8).toFixed(1);
+    var swDl  = rnd(0,3).toFixed(1);
+    var swX   = (rnd(10,24)*(Math.random()>.5?1:-1)).toFixed(0);
+
+    var inner = isHeart ? heartSVG(color,size) : leafSVG(color,size);
+
+    var el = document.createElement('div');
+    el.className='particle';
+    el.style.cssText='left:'+left+'%;'
+      +'--pf-d:'+dur+'s;'
+      +'--pf-dl:'+delay+'s;'
+      +'--pf-x:'+driftX+'px;'
+      +'--pf-r:'+rot+'deg;'
+      +'--pf-op:'+op+';'
+      +'--pf-s:'+scale+';'
+      +'--pf-sw:'+swD+'s;'
+      +'--pf-swd:'+swDl+'s;'
+      +'--pf-swx:'+swX+'px';
+    el.innerHTML='<div class="particle-inner">'+inner+'</div>';
+    section.appendChild(el);
+  }
+}
+
+var SECTIONS=[
+  {id:'hero',     count:24, dark:false},
+  {id:'story',    count:20, dark:false},
+  {id:'events',   count:22, dark:false},
+  {id:'venue',    count:20, dark:true },
+  {id:'dua',      count:20, dark:true },
+  {id:'countdown',count:20, dark:true },
+  {id:'closing',  count:24, dark:false},
+];
+
+document.addEventListener('DOMContentLoaded',function(){
+  SECTIONS.forEach(function(cfg){
+    var el=document.getElementById(cfg.id);
+    if(el) spawn(el,cfg.count,cfg.dark);
+  });
+
+  /* Splash stars */
+  var sp=document.getElementById('splashStars');
+  if(sp){
+    for(var i=0;i<100;i++){
+      var s=document.createElement('div');
+      var sz=rnd(.5,2.4);
+      s.style.cssText='position:absolute;border-radius:50%;background:#fff;width:'+sz.toFixed(1)+'px;height:'+sz.toFixed(1)+'px;left:'+rnd(0,100).toFixed(1)+'%;top:'+rnd(0,100).toFixed(1)+'%;opacity:'+rnd(.12,.65).toFixed(2);
+      sp.appendChild(s);
+    }
+  }
+
+  /* Hero stars */
+  var se=document.getElementById('starsEl');
+  if(se){
+    for(var i=0;i<130;i++){
+      var s=document.createElement('div');
+      s.className='star-dot';
+      var sz=rnd(.4,2.5);
+      s.style.cssText='width:'+sz.toFixed(1)+'px;height:'+sz.toFixed(1)+'px;left:'+rnd(0,100).toFixed(1)+'%;top:'+rnd(0,78).toFixed(1)+'%;--t:'+rnd(1.4,4.4).toFixed(1)+'s;--tl:'+rnd(0,4).toFixed(1)+'s';
+      se.appendChild(s);
+    }
+  }
+});
+
+/* Scroll Reveal */
+var rvEls=document.querySelectorAll('.rv');
+if('IntersectionObserver' in window){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target);}});
+  },{threshold:0,rootMargin:'0px 0px -40px 0px'});
+  rvEls.forEach(function(el){obs.observe(el);});
+} else { rvEls.forEach(function(el){el.classList.add('show');}); }
+
+/* Countdown */
+var wed=new Date('2026-05-31T18:00:00');
 function tick(){
-  const diff = wed - Date.now();
+  var diff=wed-Date.now();
   if(diff<=0){
     document.getElementById('cdRow').innerHTML='<p style="font-family:Amiri,serif;font-size:clamp(1.2rem,4vw,2rem);color:#fff;padding:1rem">ماشاء الله — The blessed day has arrived! 🌙</p>';
     return;
   }
-  const pad=n=>String(Math.floor(n)).padStart(2,'0');
+  var pad=function(n){return String(Math.floor(n)).padStart(2,'0');};
   document.getElementById('cd-d').textContent=pad(diff/864e5);
   document.getElementById('cd-h').textContent=pad((diff%864e5)/36e5);
   document.getElementById('cd-m').textContent=pad((diff%36e5)/6e4);
@@ -979,11 +1103,11 @@ function tick(){
 }
 tick(); setInterval(tick,1000);
 
-/* ── Smooth anchor scroll ── */
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
+/* Smooth anchor scroll */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
     e.preventDefault();
-    const t=document.querySelector(a.getAttribute('href'));
+    var t=document.querySelector(a.getAttribute('href'));
     if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
   });
 });
