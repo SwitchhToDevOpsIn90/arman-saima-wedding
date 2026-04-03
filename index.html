@@ -476,6 +476,44 @@ body{font-family:'DM Sans',sans-serif;background:#f4faf8;color:#3d5050;overflow-
 .loc-address{font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.65;font-weight:500}
 .loc-date{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-top:.35rem;display:block;font-weight:600}
 
+.loc-map-btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  margin-top:.9rem;
+  padding:.55rem 1.3rem;
+  font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:#0f2a22;
+  background:linear-gradient(135deg,#DAEBE3,#ffffff);
+  border:none;border-radius:50px;
+  text-decoration:none;
+  box-shadow:0 4px 16px rgba(0,0,0,.25),0 1px 4px rgba(0,0,0,.15);
+  transition:transform .22s ease,box-shadow .22s ease,background .22s ease;
+  -webkit-tap-highlight-color:transparent;
+  cursor:pointer;
+  user-select:none;
+}
+.loc-map-btn:hover{
+  background:linear-gradient(135deg,#ffffff,#f0f8f5);
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(0,0,0,.28);
+}
+.loc-map-btn:active{
+  transform:scale(.96);
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+
+.loc-map-note{
+  display:inline-block;
+  margin-top:.8rem;
+  padding:.48rem 1.1rem;
+  font-size:.78rem;letter-spacing:.04em;font-weight:600;
+  color:rgba(255,255,255,.92);
+  background:rgba(255,255,255,.1);
+  border:1px dashed rgba(253,232,211,.5);
+  border-radius:50px;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+}
+
 /* ══════════════════════════════════════════
    6. DUA — Sacred Dark with Islamic Pattern
 ══════════════════════════════════════════ */
@@ -842,14 +880,14 @@ footer strong{color:rgba(218,235,227,.85)}
         <div class="ec-name">Nikah / Barat</div>
         <div class="ec-ar">النكاح والبارات</div>
         <div class="ec-date">31 May 2026 · Evening</div>
-        <div class="ec-venue">🏛️ Waqf Marriage Hall<br>Laheria Sarai, Darbhanga</div>
+        <div class="ec-venue">🏛️ Bahudeshiya Bhawan<br>Marriage Hall, Darbhanga</div>
       </div>
       <div class="ec walima rv d3">
         <span class="ec-icon">🤲</span>
         <div class="ec-name">Walima</div>
         <div class="ec-ar">وليمة</div>
         <div class="ec-date">2 June 2026 · Evening</div>
-        <div class="ec-venue">🌿 Salik Vatika Hall<br>Darbhanga, Bihar</div>
+        <div class="ec-venue">🌿 Salil Vatika Hall<br>Laheria Sarai, Darbhanga</div>
       </div>
     </div>
   </div>
@@ -857,45 +895,70 @@ footer strong{color:rgba(218,235,227,.85)}
 
 
 <!-- ══════════════════════════════════════
-  LOCATION — Elegant Journey Timeline
+  LOCATION — Venue Map Section
 ══════════════════════════════════════ -->
 <section id="venue">
   <div class="venue-in">
-    <div class="v-badge rv">🗓️ &nbsp;Where to Find Us — أماكن الاحتفال</div>
-    <h2 class="v-name rv d1">Your Journey to Our Joy</h2>
-    <p class="v-loc rv d1">Darbhanga, Bihar · India</p>
+    <div class="v-badge rv">📍 &nbsp;Venue Locations — عناوين الاحتفالات</div>
+    <h2 class="v-name rv d1">Find Your Way to the Celebration</h2>
+    <p class="v-loc rv d1">Laheria Sarai, Darbhanga, Bihar · India</p>
     <p class="v-desc rv d2">
-      Each venue holds a chapter of our love story —<br>
-      follow the path of barakat and celebration.
+      Tap the map link below each venue to navigate directly —<br>
+      we cannot wait to see you there.
     </p>
     <div class="loc-timeline rv d3">
+
+      <!-- 01 HALDI -->
       <div class="loc-item" style="--lc:#FDE8D3">
         <div class="loc-num">01</div>
         <div class="loc-body">
-          <span class="loc-event">🌼 Haldi Ceremony</span>
-          <div class="loc-name">At Home — بيت العائلة</div>
+          <span class="loc-event">🌼 Haldi Ceremony · 30 May 2026 · Evening</span>
+          <div class="loc-name">Masoom Manzil</div>
           <div class="loc-address">Laheria Sarai, Darbhanga, Bihar</div>
-          <span class="loc-date">30 May 2026 · Evening</span>
+          <div class="loc-map-note">🏠 Home — You know it already 😊</div>
         </div>
       </div>
+
+      <!-- 02 NIKAH / BARAT -->
       <div class="loc-item" style="--lc:#99CDD8">
         <div class="loc-num">02</div>
         <div class="loc-body">
-          <span class="loc-event">🕌 Nikah &amp; Barat</span>
-          <div class="loc-name">Waqf Marriage Hall — قاعة الأوقاف</div>
+          <span class="loc-event">🕌 Nikah &amp; Barat · 31 May 2026 · Evening</span>
+          <div class="loc-name">Bahudeshiya Bhawan Marriage Hall</div>
           <div class="loc-address">Laheria Sarai, Darbhanga, Bihar</div>
-          <span class="loc-date">31 May 2026 · Evening</span>
+          <a class="loc-map-btn"
+             href="https://share.google/ENSSACD1zBdtXUIEB"
+             target="_blank"
+             rel="noopener noreferrer"
+             onclick="window.open('https://share.google/ENSSACD1zBdtXUIEB','_blank');return false;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+            </svg>
+            Get Directions
+          </a>
         </div>
       </div>
+
+      <!-- 03 WALIMA -->
       <div class="loc-item" style="--lc:#CFD8C4">
         <div class="loc-num">03</div>
         <div class="loc-body">
-          <span class="loc-event">🤲 Walima Reception</span>
-          <div class="loc-name">Salil Vatika Hall — قاعة سليل واتيكا</div>
-          <div class="loc-address">Darbhanga, Bihar</div>
-          <span class="loc-date">2 June 2026 · Evening</span>
+          <span class="loc-event">🤲 Walima Reception · 2 June 2026 · Evening</span>
+          <div class="loc-name">Salil Vatika Hall</div>
+          <div class="loc-address">Laheria Sarai, Darbhanga, Bihar</div>
+          <a class="loc-map-btn"
+             href="https://share.google/AC2VKM2klbz0vmmAu"
+             target="_blank"
+             rel="noopener noreferrer"
+             onclick="window.open('https://share.google/AC2VKM2klbz0vmmAu','_blank');return false;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+            </svg>
+            Get Directions
+          </a>
         </div>
       </div>
+
     </div>
   </div>
 </section>
