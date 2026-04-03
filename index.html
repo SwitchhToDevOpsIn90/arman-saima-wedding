@@ -579,6 +579,22 @@ body{font-family:'DM Sans',sans-serif;background:#f4faf8;color:#3d5050;overflow-
 .close-names{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(2rem,7vw,3.2rem);color:#1a2e2a;margin-bottom:.4rem}
 .close-date{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#3d5e58;margin-bottom:2.4rem;font-weight:700}
 
+.close-host{
+  margin-top:2rem;
+  display:flex;flex-direction:column;align-items:center;gap:.3rem;
+}
+.close-host-label{
+  font-family:'DM Sans',sans-serif;
+  font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#657166;font-weight:600;
+}
+.close-host-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.3rem,4vw,1.9rem);
+  font-weight:600;color:#1a2e2a;
+  letter-spacing:.02em;
+}
+
 /* Falling rose petals in closing */
 .rose-petal{
   position:absolute;pointer-events:none;z-index:2;
@@ -1030,6 +1046,10 @@ footer strong{color:rgba(218,235,227,.85)}
     <div class="close-names rv d3">Arman &amp; Saima</div>
     <div class="close-date rv d3">30 May – 2 June 2026 · Darbhanga</div>
     <a href="#events" class="btn rv d4">Join Us in Celebration 🌸</a>
+    <div class="close-host rv d4">
+      <span class="close-host-label">Hosted with love by</span>
+      <span class="close-host-name">Zainab Khatoon &amp; Family</span>
+    </div>
   </div>
 
   <svg class="close-wave bot" viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
